@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎯 Taxi Fare Prediction Result</title>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Neue', cursive;
+      background: linear-gradient(to top right, #a3e9ff, #d0f0ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, #ffffffaa 0%, transparent 80%);
+      border-radius: 50%;
+      animation: float 4s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    .result-box {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(0, 195, 255, 0.6);
+      max-width: 400px;
+      width: 90%;
+      z-index: 10;
+    }
+
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      color: #0077b6;
+      text-shadow: 0 0 10px #00d4ff;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .back-btn {
+      padding: 12px 30px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00e1ff;
+      transition: 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .back-btn:hover {
+      background: linear-gradient(to right, #0072ff, #00c6ff);
+      box-shadow: 0 0 30px #00e1ff;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sparkles ✨ -->
+  {% for i in range(25) %}
+  <div class="sparkle" style="
+      left: {{ (loop.index0 * 100) % 100 }}vw;
+      animation-delay: {{ (loop.index0 * 0.2) % 4 }}s;
+      animation-duration: {{ 3 + (loop.index0 % 4) }}s;
+    "></div>
+  {% endfor %}
+
+  <div class="result-box">
+    <h2>🎯 Predicted Fare</h2>
+    <p><strong>Estimated Taxi Fare:</strong> ₹{{ prediction }}</p>
+
+    <p>💰 Price/km: {{ price }}</p>
+    <p>🏙️ Population: {{ population }}</p>
+    <p>💵 Income: {{ income }}</p>
+    <p>🅿️ Parking Spaces: {{ parking }}</p>
+
+    <a href="/"><button class="back-btn">⬅️ Try Again</button></a>
+  </div>
+</body>
+</html>
